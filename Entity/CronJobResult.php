@@ -34,18 +34,19 @@ class CronJobResult
     protected $runTime;
     
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @var integer $result
      */
     protected $result;
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      * @var string $output
      */
     protected $output;
     
     /**
      * @ORM\ManyToOne(targetEntity="CronJob", inversedBy="results")
+     * @JoinColumn(name="job_id", referencedColumnName="job_id", onDelete="CASCADE")
      * @var CronJob
      */
     protected $job;

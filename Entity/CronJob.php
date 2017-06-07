@@ -53,6 +53,7 @@ class CronJob
      * @var CronJobResult
      */
     protected $mostRecentRun;
+
     public function __construct()
     {
         $this->results = new \Doctrine\Common\Collections\ArrayCollection();
