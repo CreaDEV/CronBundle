@@ -15,7 +15,7 @@ class CronJob
      * @var integer $id
      */
     protected $id;
-    
+
     /**
      * @ORM\Column
      * @var string $command
@@ -26,7 +26,7 @@ class CronJob
      * @var string $description
      */
     protected $description;
-    
+
     /**
      * @ORM\Column(name="job_interval", type="string", length=40)
      * @var string $interval
@@ -42,14 +42,15 @@ class CronJob
      * @var boolean $enabled
      */
     protected $enabled;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="CronJobResult", mappedBy="job", cascade={"remove"})
      * @var ArrayCollection
      */
     protected $results;
     /**
-     * @ORM\OneToOne(targetEntity="CronJobResult")
+     * @ORM\OneToOne(targetEntity="CronJobResult", cascade={"remove"})
+     * @ORM\JoinColumn(name="jobresult_id", referencedColumnName="id", onDelete="CASCADE")
      * @var CronJobResult
      */
     protected $mostRecentRun;
@@ -58,11 +59,11 @@ class CronJob
     {
         $this->results = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -82,7 +83,7 @@ class CronJob
     /**
      * Get command
      *
-     * @return string 
+     * @return string
      */
     public function getCommand()
     {
@@ -102,7 +103,7 @@ class CronJob
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -122,7 +123,7 @@ class CronJob
     /**
      * Get interval
      *
-     * @return string 
+     * @return string
      */
     public function getInterval()
     {
@@ -142,7 +143,7 @@ class CronJob
     /**
      * Get nextRun
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getNextRun()
     {
@@ -162,7 +163,7 @@ class CronJob
     /**
      * Get results
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getResults()
     {
@@ -182,7 +183,7 @@ class CronJob
     /**
      * Get mostRecentRun
      *
-     * @return ColourStream\Bundle\CronBundle\Entity\CronJobResult 
+     * @return ColourStream\Bundle\CronBundle\Entity\CronJobResult
      */
     public function getMostRecentRun()
     {
@@ -202,7 +203,7 @@ class CronJob
     /**
      * Get enabled
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getEnabled()
     {

@@ -2,6 +2,7 @@
 namespace ColourStream\Bundle\CronBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * @ORM\Entity(repositoryClass="ColourStream\Bundle\CronBundle\Entity\CronJobResultRepository")
@@ -13,7 +14,7 @@ class CronJobResult
     const FAILED = 1;
     const SKIPPED = 2;
     const RESULT_MAX = 2;
-    
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -21,7 +22,7 @@ class CronJobResult
      * @var integer $id
      */
     protected $id;
-    
+
     /**
      * @ORM\Column(type="datetime")
      * @var DateTime $runAt
@@ -32,7 +33,7 @@ class CronJobResult
      * @var float $runTime
      */
     protected $runTime;
-    
+
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @var integer $result
@@ -43,10 +44,10 @@ class CronJobResult
      * @var string $output
      */
     protected $output;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="CronJob", inversedBy="results")
-     * @JoinColumn(name="job_id", referencedColumnName="job_id", onDelete="CASCADE")
+     * @JoinColumn(name="job_id", referencedColumnName="id", onDelete="CASCADE")
      * @var CronJob
      */
     protected $job;
@@ -55,11 +56,11 @@ class CronJobResult
     {
         $this->runAt = new \DateTime();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -79,7 +80,7 @@ class CronJobResult
     /**
      * Get runAt
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getRunAt()
     {
@@ -99,7 +100,7 @@ class CronJobResult
     /**
      * Get runTime
      *
-     * @return float 
+     * @return float
      */
     public function getRunTime()
     {
@@ -119,7 +120,7 @@ class CronJobResult
     /**
      * Get result
      *
-     * @return integer 
+     * @return integer
      */
     public function getResult()
     {
@@ -139,7 +140,7 @@ class CronJobResult
     /**
      * Get output
      *
-     * @return string 
+     * @return string
      */
     public function getOutput()
     {
@@ -159,7 +160,7 @@ class CronJobResult
     /**
      * Get job
      *
-     * @return ColourStream\Bundle\CronBundle\Entity\CronJob 
+     * @return ColourStream\Bundle\CronBundle\Entity\CronJob
      */
     public function getJob()
     {
