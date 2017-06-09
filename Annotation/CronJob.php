@@ -14,12 +14,16 @@ class CronJob extends Annotation
 
     public function getFirstRunDT()
     {
-        $firstTryString = date('Y-m-d') . ' ' . $this->firstrun;
-        $firstTry = \DateTime::createFromFormat('Y-m-d H:i:s', $firstTryString);
-        if ($firstTry < (new \DateTime())) {
-            $firstTry->add((new \DateInterval('PT24H')));
+        if ($this->firstrun !== null) {
+            $firstTryString = date('Y-m-d') . ' ' . $this->firstrun;
+            $firstTry = \DateTime::createFromFormat('Y-m-d H:i:s', $firstTryString);
+            if ($firstTry < (new \DateTime())) {
+                $firstTry->add((new \DateInterval('PT24H')));
+            }
+            return $firstTry;
         }
-        return $firstTry;
+
+        return (new \DateTime())->add((new \DateInterval($this->interval)));
     }
 
 }
