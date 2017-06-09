@@ -1,7 +1,7 @@
 <?php
 namespace ColourStream\Bundle\CronBundle\Command;
 
-use Fusion\Framework\CronBundle\Entity\CronJobResult;
+use ColourStream\Framework\CronBundle\Entity\CronJobResult;
 
 use Symfony\Component\Console\Output\OutputInterface;
 
