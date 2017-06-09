@@ -69,7 +69,7 @@ This will schedule your tasks to run at most every 5 minutes - for instance, tas
 Creating your own tasks with CronBundle couldn't be easier - all you have to do is create a normal Symfony2 Command (or ContainerAwareCommand) and tag it with the @CronJob annotation, as demonstrated below:
 ```php
 /**
- * @CronJob("PT1H")
+ * @CronJob(interval="PT1H", firstrun="09:00:00")
  */
 class DemoCommand extends Command
 {

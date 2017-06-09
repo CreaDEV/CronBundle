@@ -9,5 +9,17 @@ use Doctrine\Common\Annotations\Annotation;
 
 class CronJob extends Annotation
 {
-    public $value;
+    public $interval;
+    public $firstrun;
+
+    public function getFirstRun()
+    {
+        $firstTryString = date('Y-m-d') . ' ' . $this->firstrun;
+        $firstTry = \DateTime::createFromFormat('Y-m-d H:i:s', $firstTryString);
+        if ($firstTry < (new \DateTime())) {
+            $firstTry->add((new DateInterval('PT24H')));
+        }
+        return $firstTry;
+    }
+
 }
