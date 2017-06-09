@@ -59,14 +59,14 @@ class CronScanCommand extends ContainerAwareCommand
                         // Update the job if necessary
                         $currentJob = $jobRepo->findOneByCommand($job);
                         $currentJob->setDescription($command->getDescription());
-                        if($currentJob->getInterval() != $anno->value)
+                        if($currentJob->getInterval() != $anno->interval)
                         {
                             $newTime = new \DateTime();
-                            $newTime = $newTime->add(new \DateInterval($anno->value));
+                            $newTime = $newTime->add(new \DateInterval($anno->interval));
                             
-                            $currentJob->setInterval($anno->value);
+                            $currentJob->setInterval($anno->interval);
                             $currentJob->setNextRun($newTime);
-                            $output->writeln("Updated interval for $job to {$anno->value}");
+                            $output->writeln("Updated interval for $job to {$anno->interval}");
                         }
                     }
                     else
