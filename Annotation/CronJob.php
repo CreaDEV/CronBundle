@@ -12,7 +12,7 @@ class CronJob extends Annotation
     public $interval;
     public $firstrun;
 
-    public function getFirstRun()
+    public function getFirstRunDT()
     {
         $firstTryString = date('Y-m-d') . ' ' . $this->firstrun;
         $firstTry = \DateTime::createFromFormat('Y-m-d H:i:s', $firstTryString);
