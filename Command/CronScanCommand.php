@@ -97,7 +97,7 @@ class CronScanCommand extends ContainerAwareCommand
         $newJob = new CronJob();
         $newJob->setCommand($command->getName());
         $newJob->setDescription($command->getDescription());
-        $newJob->setInterval($anno->value);
+        $newJob->setInterval($anno->interval);
         $newJob->setNextRun($anno->getFirstRunDT());
         $newJob->setEnabled(!$defaultDisabled);
         
